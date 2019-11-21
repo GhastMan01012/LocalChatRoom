@@ -50,11 +50,11 @@ if(isset($_POST['loginUsername'])) {
   $link = mysqli_connect("localhost", "root", "root", "LCR");
 
   // Check if the password given is correct
-  $sql = "SELECT UserKey FROM UserAccounts WHERE UserName = '$userName'";
+  $sql = "SELECT UserKey FROM LCR.UserAccounts WHERE UserName = '$userName'";
   $passwordHash = mysqli_fetch_assoc(mysqli_query($link, $sql))['UserKey'];
   if(password_verify($_POST['loginPassword'], $passwordHash)) {
     // Connect to the database and grab user perms and name by matching the username and password
-    $sql = "SELECT Perms, UserName FROM UserAccounts WHERE UserKey = '".$_POST['loginUsername']."' AND UserName = '$userName'";
+    $sql = "SELECT Perms, UserName FROM LCR.UserAccounts WHERE UserKey = '".$passwordHash."' AND UserName = '$userName'";
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     } else {
@@ -64,9 +64,11 @@ if(isset($_POST['loginUsername'])) {
     // Turn the data into an array where each key is a column in the table
     $data = mysqli_fetch_assoc($results);
     // Write the database info to a session variable so it can be called later
+    echo $data['UserName'];
     $_SESSION['userName'] = $data['UserName'];
     $_SESSION['permissions'] = $data['Perms'];
-    echo "<meta http-equiv='refresh' content='3;url:Chat.php'>";
+  } else {
+    echo "FALSE";
   }
 }
 
