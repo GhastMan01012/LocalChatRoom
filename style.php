@@ -31,7 +31,7 @@ if($userName == "") {
 }
 ?>
 html {
-  font-family: 'product_sansregular', verdana;
+  font-family: 'Rubik', verdana;
 }
 body {
   margin: 0;
@@ -46,6 +46,13 @@ ul {
 a {
   text-decoration: none;
 }
+#sidebar ul a:visited {
+  color: #0696cc;
+  text-decoration: underline;
+}
+nav ul li a {
+  color: black;
+}
 h2 {
   color: #0696cc;
 }
@@ -53,62 +60,22 @@ h3 {
   margin: 8px;
   color: #d51c46;
 }
-#brokenPage {
-  display: none;
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-bottom: 1px solid black;
+}
+nav ul li {
+  float: right;
+  padding: 3vh 1vw;
 }
 #txt {
   margin: 0;
 }
-.barItem {
-  display: block;
-  text-decoration: none;
-  padding: 10px;
-  font-size: 18px;
-  color: #0696cc;
-  transition: background-color 0.2s, color 0.2s;
-}
-.barItem:hover {
-  background-color: <?php echo $styleBGC ?>;
-  color: <?php echo $styleAC ?>;
-}
 .active {
   color: <?php echo $styleAC ?>;
-}
-.headerBar {
-  display: block;
-  float: left;
-  text-align: center;
-  text-decoration: none;
-}
-.headerButtons {
-  width: 8.33%;
-}
-#header {
-  list-style-type: none;
-  color: #116280;
-  background-color: <?php echo $styleBGC ?>;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-#loginButton {
-  font-size: 150%;
-  text-align: center;
-  cursor: pointer;
-  margin: 0px;
-  transition: background-color 0.2s, color 0.2s;
-  padding-top: 25.5px;
-  padding-bottom: 25.5px;
-}
-#loginButton:hover {
-  background-color: #ffffff;
-  color: <?php echo $styleAC ?>;
-}
-.loginContent {
-  margin-top:25.5px;
-  padding:12px;
-  text-align:left;
-  background-color: <?php echo $styleBGC ?>;
 }
 #chatButton {
   text-align: center;
@@ -119,49 +86,6 @@ h3 {
 }
 #chatButton:hover {
   background-color: <?php echo $styleBGC ?>;
-  color: <?php echo $styleAC ?>;
-}
-#theHeader {
-  text-align: center;
-  cursor: pointer;
-  margin: 0px;
-  color: <?php echo $styleHC ?>;
-  transition: background-color 0.2s, color 0.2s;
-  padding: 0;
-  width: 25%;
-  height: 80px;
-}
-#motd {
-  width: 50%;
-  padding-top: 13px;
-  padding-bottom: 13px;
-}
-#theHeader:hover {
-  background-color: #ffffff;
-  color: <?php echo $styleAC ?>;
-}
-#privacyButton {
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-  color: <?php echo $styleHC ?>;
-  padding-top: 31px;
-  padding-bottom: 31px;
-}
-#privacyButton:hover {
-  background-color: #ffffff;
-  color: <?php echo $styleAC ?>;
-}
-#registerButton {
-  text-align: center;
-  cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
-  color: <?php echo $styleHC ?>;
-  padding-top: 31px;
-  padding-bottom: 31px;
-}
-#registerButton:hover {
-  background-color: #ffffff;
   color: <?php echo $styleAC ?>;
 }
 #userInput {
@@ -175,7 +99,7 @@ h3 {
   height: 747px;
   background-color: #ffffff;
   color: <?php echo $styleC ?>;
-  border-right: 0.2vw solid <?php echo $styleBGC ?>;
+  border-right: 1px solid black;
   text-align: center;
 }
 .notification {
@@ -189,6 +113,7 @@ h3 {
   float: left;
   width: calc(76vw - 17px);
   height: 82.22vh;
+  background-color: #efefef;
 }
 #actualText {
   seamless: "seamless";
@@ -205,38 +130,34 @@ h3 {
   padding-left: 20px;
   font-size: 25px
 }
-#loginDropdown {
-  position: relative;
-  display: inline-block;
+#loginForm {
+  display: none;
+  transition: display 0.5s;
 }
-.loginBox {
-  display: none; /* Hidden by default */
-  position: absolute; /* Stay in place */
-  min-width: 160px; /* Sit on top */
-  z-index: 1;
-  font-size: 15px;
-  background-color: rgba(255,255,255,0);
-  transition: display 0.2s;
+#loginItem:hover + #loginForm {
+  display: list-item;
 }
-.loginDropdown:hover .loginBox {
-  display: block;
+#loginForm:hover {
+  display: list-item;
 }
 img {
   max-width: 400px;
 }
 .left {
   float:left;
-  border-radius:5px;
-  border:5px solid <?php echo $styleMBC ?>;
-  background-color: <?php echo $styleMBC ?>;
-  color: <?php echo $styleMBFC ?>;
+  border-radius: 12px;
+  border:2px solid <?php echo $styleMBC ?>;
+  background-color: white;
+  color: black;
+  padding: 4px;
 }
 .right {
   float:right;
-  border-radius:5px;
-  border:5px solid <?php echo $styleSBC ?>;
-  background-color: <?php echo $styleSBC ?>;
-  color: <?php echo $styleSBFC ?>;
+  border-radius:12px;
+  border: 2px solid #056e94;
+  background-color: white;
+  color: #000000;
+  padding: 4px;
 }
 .outerDiv {
   height:auto;
