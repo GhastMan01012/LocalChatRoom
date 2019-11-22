@@ -1,54 +1,15 @@
 <?php
 // Get the account name and store it in a nicer variable
 $userName = $_SESSION['userName'];
-// include the latest message sent and seen
-if($userName != "") {
-  include "/Users/ethan/Sites/chat/accountSettings/$userName/messageViewed.php";
-}
-// Define a function to update someone's notification file
-
-// Set timezone to Brisbane, Australia
-date_default_timezone_set("Australia/Brisbane");
-// Write a bubble shaped div with styling based on client's username to a variable named $Input.
-// The if statements in the divs determine how the bubble is displayed per client.
-$Input = '<?php session_start(); $userName = $_SESSION['."'userName'".']; ?><div class="outerDiv"><div class="<?php $divSide = "'.$_SESSION['userName'].'"; if ($divSide == $userName) {
-  echo "middleleft";
-} else {
-  echo "middleright";
-} ?>"><div id="bottom" class="<?php $divSide = "'.$_SESSION['userName'].'"; if ($divSide == $userName) {
-  echo "left";
-} else {
-  echo "right";
-}?>">'.date("H:i")." ".$_SESSION['userName'].": ".$_POST['Enter']."</div></div></div>"."\n".file_get_contents("chatTrans.php"); // Set the next message to contain the txt file
-// if "Enter" is posted by the page run the function "textInput" to compile the new file and then write it.
+// Add a message to database
 if(isset($_POST['Enter'])) {
-  textInput($Input);
-}
-// Define a function to write variables to and from files.
-function varToFile($newValue, $filePath, $varName) {
-	$varFile = fopen($filePath, "w");
-	fwrite($varFile, "<?php $$varName = $newValue; ?>");
-	fclose($varFile);
-}
-// Define a function to first, replace any words that are unwanted (case-sensitive, sadly) and then write the chat to the php file.
-function textInput($Input) {
-  $badWords = array("/sex/", "/Sex/", "/porn/", "/Porn/", "/period/", "/Period/", "/nudes/", "/Nudes/", "/Pussy/", "/pussy/", "/penis/", "/Penis/", "/nigga/", "/Nigga/", "/Porno/", "/porno/", "/nigger/", "/Nigger/",
-   "/fuck/", "/Fuck/", "/dick/", "/Dick/");
-
-  $Input = preg_replace($badWords, 'nope', $Input);
-  file_put_contents("chatTrans.php", $Input);
-  // Update the latest message file
-  include "/Users/ethan/Sites/chat/latestMessage.php";
-  $newLatest = $latestMessageSent + 1;
-  varToFile($newLatest, "/Users/ethan/Sites/chat/latestMessage.php", "latestMessageSent");
-}
-// Define a function to get rid of unwanted words and then write it to the meme-ery's chat file.
-function imgInput($imgInput) {
-  $badWords = array("/sex/", "/Sex/", "/porn/", "/Porn/", "/period/", "/Period/", "/nudes/", "/Nudes/", "/Pussy/", "/pussy/", "/penis/", "/Penis/", "/nigga/", "/Nigga/", "/Porno/", "/porno/", "/nigger/", "/Nigger/",
-   "/fuck/", "/Fuck/", "/dick/", "/Dick/");
-
-  $imgInput = preg_replace($badWords, 'nope', $imgInput);
-  file_put_contents("imgTrans.php", $imgInput);
+  $link = mysqli_connect("localhost", "root", "root", "LCR");
+  $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$_POST['Enter']."', '$userName')";
+    if(!mysqli_query($link, $sql)) {
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    } 
+  // Close connection
+  mysqli_close($link);
 }
 // Detect if "msgImage" is sent and then create a new $imgInput variable containing the new message. Then, write it to the meme-ery chat file.
 if(isset($_POST['msgImage'])) {

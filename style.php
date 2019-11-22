@@ -132,7 +132,7 @@ nav ul li {
 }
 #loginForm {
   display: none;
-  transition: display 0.5s;
+  transition: background-color 0.5s;
 }
 #loginItem:hover + #loginForm {
   display: list-item;
@@ -161,7 +161,7 @@ img {
 }
 .outerDiv {
   height:auto;
-  padding: 5px;
+  margin: 5px;
 }
 .middleleft {
   min-width: 51%;

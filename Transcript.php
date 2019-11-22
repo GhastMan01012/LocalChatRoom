@@ -9,7 +9,7 @@ window.setInterval(function(){
   $("#txt").load("chatTrans.php");
 }, 1000);
 </script>
-<html>
+<html style='background-color:#efefef;'>
   <head>
     <link rel="stylesheet" type="text/css" href="style.php">
     <meta encoding="utf-8">

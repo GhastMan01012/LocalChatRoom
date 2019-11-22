@@ -24,7 +24,7 @@ $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 					<tr>
 						<td style="width:24vw;">©2019 localchatroom.ml.<br> All rights reserved. (sorta)</td>
 						<td style="text-align:center;width:76vw;">
-							<form action="/Chat.php" method="post">
+							<form action="/" method="post">
 								<p class="textInput">Send a message to the chat:
 									<input name="Enter" autocomplete="off" autofocus="on" maxlength="200" placeholder="Your Message:"></input>
 								</p>

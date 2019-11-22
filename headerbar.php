@@ -10,6 +10,6 @@
         <input type="submit">
       </form>
     </a></li>
-    <li><a><?php echo $userName; ?></a></li>
+    <li><a><?php echo $userName; ?><br></a></li>
   </ul>
 </nav>

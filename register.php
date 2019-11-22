@@ -17,7 +17,7 @@
           <div style="font-size:11px;">Max length is 16 characters</div>
           Username:<input id="username" name="registerUsername" autocomplete="off" autofocus maxlength="16" required><br><br>
           Password:<input id="password" type="password" name="registerPassword" autocomplete="off" maxlength="16" required><br><br>
-          You agree to Terms & Conditions (which you can check <a href="Privacy.php">here</a>) <input type="checkbox" name="tos" required><br><br>
+          You agree to Terms & Conditions (which you can check <a target="_blank" href="Privacy.php">here</a>) <input type="checkbox" name="tos" required><br><br>
           <input style="background-color:#dfdfdf;color:#116280;padding:3px 10px;border:none;" type="submit" value="Register" onClick"return empty()">
         </div>
       </form>
