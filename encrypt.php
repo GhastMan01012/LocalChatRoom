@@ -2,7 +2,7 @@
 
 // Define a function to add all the default values to the UserSettings.Colours table
 function defaultify($userName) {
-  $link = mysqli_connect("localhost", "root", "root", "UserSettings");
+  $link = mysqli_connect("127.0.0.1", "root", "root", "UserSettings");
   $sql = "INSERT INTO Colours (UserName, MainBubble, MainBubbleFont, SecondaryBubble, SecondaryBubbleFont, BackgroundColour, AccentColour, HeaderColour, GeneralColour) VALUES ('".$userName."', '#d51c46', '#ffffff', '#dfdfdf', '#116280', '#dfdfdf', '#d51c46', '#116280', '#0696cc')";
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -18,7 +18,7 @@ if(isset($_POST['registerPassword'])) {
   $encrypted = password_hash($_POST['registerPassword'], PASSWORD_BCRYPT);
   $userName = $_POST['registerUsername'];
   // Attempt MySQL server connection.
-  $link = mysqli_connect("localhost", "root", "root", "LCR");
+  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
   // Check connection
   if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -47,7 +47,7 @@ if(isset($_POST['loginUsername'])) {
   $userName = $_POST['loginUsername'];
 
   // Setup a database connection
-  $link = mysqli_connect("localhost", "root", "root", "LCR");
+  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
 
   // Check if the password given is correct
   $sql = "SELECT UserKey FROM LCR.UserAccounts WHERE UserName = '$userName'";
