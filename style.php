@@ -122,9 +122,10 @@ nav ul li {
   bottom: 0;
   position: fixed;
   width: 100%;
-  background-color: #efefef;
+  background-color: white;
   height: 8.89vh;
-  color: #0696cc;
+  color: black;
+  border: 1px solid black;
 }
 .textInput {
   padding-left: 20px;
@@ -137,6 +138,9 @@ nav ul li {
   display: list-item;
 }
 #loginForm:hover {
+  display: list-item;
+}
+#loginForm:focus {
   display: list-item;
 }
 img {

@@ -11,5 +11,6 @@
       </form>
     </a></li>
     <li><a><?php echo $userName; ?><br></a></li>
+    <li style='padding:0;padding-left:10vw;float:left;'><a style='color:#0696cc;'><h1>Send</h1></a></li>
   </ul>
 </nav>

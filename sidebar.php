@@ -6,7 +6,6 @@ if($userName != "") {
 ?>
 <div id="sidebar" class="mainContent">
   <ul>
-    <li><a href="Chat.php"><h1>Send</h1></a></li>
     <li><h3>Public Rooms -</h3></li>
     <li><a class="barItem" href="/Chat.php">Chat</a></li>
     <?php
