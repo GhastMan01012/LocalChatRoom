@@ -127,10 +127,7 @@ if(isset($_POST['styleMBFC'])) {																																										 // an
 if(isset($_POST['styleSBFC'])) {																																										 // and the new message sent.
   styleInput('secondaryBubbleFontColor', $_POST['styleSBFC'], $userName);
 }
-// include the user's personal database
-include "accountSettings/$userName/roomDatabase.php";
-// include the user's invites array so they can accept them and so the inviter can get their user in their database.
-include "/Users/ethan/Sites/chat/accountSettings/$userName/invites.php";
+
 // If the user selects an option from the invites area:
 // If that option is accept invite -
 if(isset($_POST['accept'])) {

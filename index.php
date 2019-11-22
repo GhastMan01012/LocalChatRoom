@@ -4,13 +4,13 @@
 $userName = $_SESSION['userName'];
 $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 ?>
-	<html style='background-color:#efefef;'>
+	<html style='background-color:#efefef;font-family:"Rubik";'>
 		<head lang="en-AU">
 			<link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
 			<link rel="stylesheet" href="style.php">
       <?php include 'script.php'; ?>
 			<meta charset="UTF-8">
-			<title>Local Chat Room</title>
+			<title>Send</title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 		</head>
 		<body>

@@ -6,7 +6,7 @@ if($userName != "") {
 ?>
 <div id="sidebar" class="mainContent">
   <ul>
-    <li><a href="Chat.php"><h1>Local Chatroom</h1></a></li>
+    <li><a href="Chat.php"><h1>Send</h1></a></li>
     <li><h3>Public Rooms -</h3></li>
     <li><a class="barItem" href="/Chat.php">Chat</a></li>
     <?php
@@ -16,15 +16,7 @@ if($userName != "") {
     }
     ?>
     <li><h3>Additional Pages -</h3></li>
-    <li><a class="barItem" href="Config.php">Settings <?php
-    if($userName != "") {
-      include "/Users/ethan/Sites/chat/accountSettings/$userName/invites.php";
-      if(count($userInvites) > 0) {
-        $numberOfInvites = count($userInvites);
-        echo "<span class='notification'>$numberOfInvites</span>";
-      }
-    }
-    ?></a></li>
+    <li><a class="barItem" href="Config.php">Settings</a></li>
     <li><a class="barItem" href="customRoom.php">Create a Room</a></li>
     <li><h3>User Pages -</h3></li>
     <?php

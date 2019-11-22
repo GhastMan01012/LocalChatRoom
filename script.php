@@ -3,11 +3,11 @@
 $userName = $_SESSION['userName'];
 // Add a message to database
 if(isset($_POST['Enter'])) {
-  $link = mysqli_connect("localhost", "root", "root", "LCR");
+  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
   $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$_POST['Enter']."', '$userName')";
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-    } 
+    }
   // Close connection
   mysqli_close($link);
 }
