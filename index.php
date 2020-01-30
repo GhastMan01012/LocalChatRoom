@@ -1,7 +1,9 @@
 <?php session_start(); // Start a session where $_SESSION[] variables can be called from. ?>
 <!DOCTYPE html>
 <?php
-$userName = $_SESSION['userName'];
+if(isset($_SESSION['userName'])) {
+	$userName = $_SESSION['userName'];
+}
 $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 ?>
 	<html style='background-color:#efefef;font-family:"Rubik";'>
