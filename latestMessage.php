@@ -1,1 +1,0 @@
-<?php $latestMessageSent = 22; ?>
