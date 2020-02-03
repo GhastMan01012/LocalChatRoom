@@ -4,7 +4,7 @@
 if(isset($_SESSION['userName'])) {
 	$userName = $_SESSION['userName'];
 }
-$currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
+$currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 ?>
 	<html style='background-color:#efefef;font-family:"Rubik";'>
 		<head lang="en-AU">
@@ -12,7 +12,7 @@ $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 			<link rel="stylesheet" href="style.php">
       <?php include 'script.php'; ?>
 			<meta charset="UTF-8">
-			<title>Send</title>
+			<title>The ACSHS In-School Chat</title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 		</head>
 		<body>
@@ -24,7 +24,7 @@ $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 			if($userName != "") {
 				echo '<table id="bottomBar">
 					<tr>
-						<td style="width:24vw;">©2019 localchatroom.ml.<br> All rights reserved. (sorta)</td>
+						<td style="width:24vw;">©2020 MilkMGN.<br> All rights reserved.</td>
 						<td style="text-align:center;width:76vw;">
 							<form action="/" method="post">
 								<p class="textInput">Send a message to the chat:

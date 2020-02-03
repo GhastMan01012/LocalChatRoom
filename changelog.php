@@ -1,12 +1,11 @@
-<?php session_start(); // Start a session where $_SESSION[] variables can be called from. ?>
+﻿<?php session_start(); // Start a session where $_SESSION[] variables can be called from. ?>
 <!DOCTYPE html>
 <?php
 $userName = $_SESSION['userName'];
-$currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
+$currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 ?>
 	<html>
 		<head lang="en-AU">
-			<link href="Product Sans/stylesheet.css" rel="stylesheet">
 			<link rel="stylesheet" href="style.php">
       <?php include 'script.php'; ?>
 			<meta charset="UTF-8">
@@ -17,6 +16,16 @@ $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
       <?php include 'headerbar.php'; include 'sidebar.php'; ?>
       <div>
         <h3>Changelog</h3>
+        <h2>The Migration Update</h2>
+        <ul>
+          <li>- Went through every page and changed all pointers to match up to the new hosts (milkmgn) directories: 30/01/2020, 12:34 pm</li>
+          <li>- Set up the SQL databases on the new host: 30/01/2020, 4:15 pm</li>
+          <li>- Fixed up the redirects when using the encrypt page: 30/01/2020, 5:29 pm</li>
+          <li>- Moved the sites directory from lcr-git-edit to the root of the webserver, subsequently breaking all of the pointers again: 30/01/2020, 7:20 pm</li>
+          <li>- Added messages telling Eli Plowman to do his work (you will never find them :)): 30/01/2020, 8:47 pm</li>
+          <li>- Changed all the pointers to the root of the webserver, from lcr-git-edit: 30/01/2020, 9:58 pm</li>
+          <li>- Tried to implement name changes, and failed: 31/01/2020, 12:21 pm</li>
+        </ul>
         <h2>A (fairly) Big Update</h2>
         <ul>
           <li>- Bug fix, uploading images wasn't working. Does now: 23/8/19, 12:53 pm</li>

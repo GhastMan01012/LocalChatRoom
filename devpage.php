@@ -1,13 +1,12 @@
 <?php session_start(); // Start a session where $_SESSION[] variables can be called from. ?>
 <!DOCTYPE html>
 <?php
-$userName = $_SESSION['userName'];
-// Include the feedback database, so the developers can see user feedback
-include 'feedbackDatabase.php';
+if(isset($_SESSION['userName'])) {
+	$userName = $_SESSION['userName'];
+}
 ?>
 <html>
 	<head lang="en-AU">
-		<link href="../Product%20Sans/stylesheet.css" rel="stylesheet">
 		<link rel="stylesheet" href="style.php">
     <?php include 'script.php'; ?>
 		<meta charset="UTF-8">
@@ -29,14 +28,6 @@ include 'feedbackDatabase.php';
 				<li>Make it so moderators can see reports on their page</li>
 				<li>Improve experience for those on iPads</li>
 				<li>Give users ownership over the pages they make</li>
-			</ul>
-			<h2>User Feedback -</h2>
-			<ul>
-				<?php
-				foreach ($feedbackArray as $key => $value) {
-					echo "<li>$key: $value</li>";
-				}
-				?>
 			</ul>
 		</div>
 	</body>

@@ -1,6 +1,10 @@
 <?php session_start(); // Start a session where $_SESSION[] variables can be called from.
 $userIP = $_SERVER['REMOTE_ADDR'];
-$userName = $_SESSION['userName'];
+if(!isset($_SESSION['userName'])) {
+    $userName = "";
+} else {
+    $userName = $_SESSION['userName'];
+}
 ?>
 <!DOCTYPE html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -1,6 +1,11 @@
 <?php session_start(); // Start a session where $_SESSION[] variables can be called from.
-$userName = $_SESSION['userName'];
-$currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
+// $userName = $_SESSION['userName'];
+if(!isset($_SESSION['userName'])) {
+    $userName = "";
+} else {
+    $userName = $_SESSION['userName'];
+	}
+$currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 ?>
 <!DOCTYPE html>
 	<html>
@@ -24,7 +29,7 @@ $currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
 			</div>
 			<div id="bottomBar">
 				<div style="padding:none;height:80px;width:24%;border-right:2px solid #efefef;float:left;color:#0696cc;background-color:#efefef;">
-					<b>©2019 localchatroom.ml. All rights reserved. (sorta)</b>
+					<b>©2020 MilkMGN.<br> All rights reserved.</b>
 				</div>
 				<div style="float:left;padding:none;background-color:#efefef;color:#0696cc">
 					<form action="<?=$_SERVER['PHP_SELF'];?>" method="post">

@@ -1,25 +1,35 @@
 <?php session_start();
 // Standard grabbing of info (Username and location of the currently viewed file).
 $userName = $_SESSION['userName'];
-// Grab perms
-$userPermFile = fopen("accountSettings/$userName/perms.txt", "r+");
-$userPerm = fread($userPermFile, filesize("accountSettings/$userName/perms.txt"));
-fclose($userPermFile);
 // Directory in which this is stored.
-$currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
+$currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 // Change the permission level of a user
 if(isset($_POST['user'])) {
   if(isset($_POST['permLevel'])) {
     $userToChange = $_POST['user'];
     $permToChange = $_POST['permLevel'];
-    $link = mysqli_connect("localhost", "root", "root", "LCR");
+    $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
     $sql = "UPDATE UserAccounts SET Perms = $permToChange WHERE UserName = '$userToChange'";
     $results = mysqli_query($link, $sql);
+  }
+
+  // Spencer's attempt at name changes
+  if(isset($_POST['userNameChange'])) {
+  $userToChange = $_POST['user'];
+  $newName = $_POST['userNameChange'];
+  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
+  $sql = "SELECT UserID From LCR.userAccounts WHERE UserName = '$userToChange'";
+  $results = mysqli_query($link, $sql);
+  $data = mysqli_fetch_assoc($results);
+
+  $userID = $data['UserID'];
+  $sql = "UPDATE UserAccounts SET UserName = '$newName' WHERE USERID = $userID";
+  $results = mysqli_query($link, $sql);
   }
 }
 // If the owner wants to see a user's perms, grab it from a text file.
 if(isset($_POST['userQuery'])) {
-  $link = mysqli_connect("localhost", "root", "root", "LCR");
+  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
   $sql = "SELECT Perms FROM LCR.UserAccounts WHERE UserName = '".$_POST['userQuery']."';";
   $results = mysqli_query($link, $sql);
   $data = mysqli_fetch_assoc($results);
@@ -29,7 +39,6 @@ if(isset($_POST['userQuery'])) {
 <!DOCTYPE HTML>
 <html>
   <head lang="en-AU">
-    <link href="Product Sans/stylesheet.css" rel="stylesheet">
     <link rel="stylesheet" href="style.php">
     <meta charset="UTF-8">
     <title>Local Chat Room</title>
@@ -49,8 +58,18 @@ if(isset($_POST['userQuery'])) {
       <h2>View a user's permissions -</h2>
       <form action='owner.php' method='post'>
         User:<input type='text' name='userQuery'><br>
-        Permission level: ".$userQuery."
+        Permission level: ";
+     if(isset($userQuery)) { 
+        echo $userQuery;
+     }
+     echo "
         <input type='submit' value='View Permissions'>
+      </form>
+      <h2>Change User's name -</h2>
+      <form action='owner.php' method='post'>
+        User:<input type='text' name='user'><br>
+        New Name:<input type='text' name='userNameChange'><br>
+        <input type='submit' value='Change Name'>
       </form>
     </div>
   </body>";

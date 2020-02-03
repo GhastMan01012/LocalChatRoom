@@ -14,4 +14,6 @@ $userName = $_SESSION['userName'];
   <body>
     <?php include 'headerbar.php'; include 'sidebar.php'; ?>
     <h1>Wow, the moderators have their own page!</h1>
+      <h1>CBT</h1>
+      <h1>do your work eli plowboy</h1>
   </body>

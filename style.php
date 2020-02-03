@@ -14,7 +14,7 @@ if($userName == "") {
   $styleHC = "#116280";
   $styleC = "#0696cc";
 } else { // If the user is logged in, use styles from their preferences.
-    $link = mysqli_connect("127.0.0.1", "root", "root", "UserSettings");
+    $link = mysqli_connect("localhost", "root", "milkmgn", "UserSettings");
     $sql = "SELECT MainBubble, MainBubbleFont, SecondaryBubble, SecondaryBubbleFont, BackgroundColour, AccentColour, HeaderColour, GeneralColour FROM Colours WHERE UserName = '$userName'";
     $results = mysqli_query($link, $sql);
     // Turn the data into an array where each key is a column in the table
@@ -71,6 +71,9 @@ nav ul li {
   float: right;
   padding: 3vh 1vw;
 }
+nav {
+    background-color: <?php echo $styleBGC; ?>;
+}
 #txt {
   margin: 0;
 }
@@ -96,7 +99,7 @@ nav ul li {
 #sidebar {
   float: left;
   width: 23.8vw;
-  height: 747px;
+  height: calc(100vh - 8.89vh - 4.364vh);
   background-color: #ffffff;
   color: <?php echo $styleC ?>;
   border-right: 1px solid black;
@@ -134,10 +137,10 @@ nav ul li {
 #loginForm {
   display: none;
 }
-#loginItem:hover + #loginForm {
+#loginItem + #loginForm {
   display: list-item;
 }
-#loginForm:hover {
+#loginForm {
   display: list-item;
 }
 #loginForm:focus {

@@ -8,7 +8,7 @@ if(isset($_POST['registerPassword'])) {
   $encrypted = password_hash($_POST['registerPassword'], PASSWORD_BCRYPT);
   $userName = $_POST['registerUsername'];
   // Attempt MySQL server connection.
-  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
+  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
   // Check connection
   if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -39,7 +39,7 @@ if(isset($_POST['loginUsername'])) {
   $userName = $_POST['loginUsername'];
 
   // Setup a database connection
-  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
+  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
 
   // Check if the password given is correct
   $sql = "SELECT UserKey FROM LCR.UserAccounts WHERE UserName = '$userName'";
@@ -50,8 +50,8 @@ if(isset($_POST['loginUsername'])) {
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     } else {
-        echo "Successfully logged in.<meta http-equiv='refresh' content='3;url:Chat.php'>";
-      $redirectPage = "the main Chatroom.";
+        echo "Successfully logged in.<meta http-equiv='refresh' content='3;/'>";
+        $redirectPage = "the main Chatroom.";
     }
     $results = mysqli_query($link, $sql);
     // Turn the data into an array where each key is a column in the table
@@ -66,6 +66,13 @@ if(isset($_POST['loginUsername'])) {
   } else {
     echo "FALSE";
   }
+}
+
+if(isset($_POST['logout'])) {
+    unset($_SESSION['userName']);
+    unset($_SESSION['Perms']);
+    $redirectPage = "the main Chatroom";
+    echo "<meta http-equiv='refresh' content='3;/'>";
 }
 
 ?>

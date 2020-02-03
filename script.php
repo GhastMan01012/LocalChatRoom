@@ -1,10 +1,15 @@
 <?php
+$_FILES["fileToUpload"]["name"] = "";
+$_FILES["fileToUpload"]["tmp_name"] = "";
 // Get the account name and store it in a nicer variable
-$userName = $_SESSION['userName'];
+if(isset($_SESSION['userName'])) {
+	$userName = $_SESSION['userName'];
+}
 // Add a message to database
 if(isset($_POST['Enter'])) {
-  $link = mysqli_connect("127.0.0.1", "root", "root", "LCR");
-  $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$_POST['Enter']."', '$userName')";
+  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
+  $msg = str_replace("'", "\'", $_POST['Enter']);   
+  $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$msg."', '". str_replace("'", "\'", $userName) ."')";
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     }
@@ -25,16 +30,16 @@ if(isset($_POST['msgImage'])) {
   imgInput($imgInput);																																																		// txt file with name and time.
 }
 //Memery Message
-$imgInput = '<?php session_start(); $userName = $_SESSION['."'userName'".']; ?><div class="outerDiv"><div class="<?php $divSide = "'.$userName.'"; if ($divSide == $userName) {
-  echo "middleleft";
-} else {
-  echo "middleright";
-} ?>"><div class="<?php $divSide = "'.$userName.'"; if ($divSide == $userName) {
-  echo "left";
-} else {
-  echo "right";
-}?>">'.date("H:i")." ".$userName.": ".$_POST['imgEnter']."</div></div></div>"."\n".file_get_contents("imgTrans.php"); // Set the next message to contain the txt file
-if(isset($_POST['imgEnter'])) {																																										 // and the new message sent.
+if(isset($_POST['imgEnter'])) {
+	$imgInput = '<?php session_start(); $userName = $_SESSION['."'userName'".']; ?><div class="outerDiv"><div class="<?php $divSide = "'.$userName.'"; if ($divSide == $userName) {
+	  echo "middleleft";
+	} else {
+	  echo "middleright";
+	} ?>"><div class="<?php $divSide = "'.$userName.'"; if ($divSide == $userName) {
+	  echo "left";
+	} else {
+	  echo "right";
+	}?>">'.date("H:i")." ".$userName.": ".$_POST['imgEnter']."</div></div></div>"."\n".file_get_contents("imgTrans.php");																																									 // and the new message sent.
   imgInput($imgInput);
 }
 //Image upload scripts

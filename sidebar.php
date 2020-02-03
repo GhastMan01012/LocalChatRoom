@@ -1,13 +1,15 @@
 <?php
-include '/Users/ethan/Sites/chat/sidebarItems.php';
 if($userName != "") {
   $userPerm = $_SESSION['permissions'];
+} else {
+    $userPerm = 0;
 }
+$mainRooms = array('Meme-ery'=>'Image.php');
 ?>
 <div id="sidebar" class="mainContent">
   <ul>
     <li><h3>Public Rooms -</h3></li>
-    <li><a class="barItem" href="/Chat.php">Chat</a></li>
+    <li><a class="barItem" href="/">Chat</a></li>
     <?php
     // Write the sidebar items to the side bar (from an array).
     foreach ($mainRooms as $key => $value) {
@@ -27,11 +29,6 @@ if($userName != "") {
     }
     if($userPerm == 5) {
       echo '<li><a class="barItem" href="owner.php">Owner\'s Page</a></li>';
-    }
-    if($userName != "") {
-      foreach($registeredRooms as $key => $value) {
-        echo '<li><a class="barItem" href="Rooms/'.$key.'/Chat.php">'.$value.'</a></li>';
-      }
     }
     ?>
   </ul>
