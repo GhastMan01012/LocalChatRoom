@@ -1,0 +1,1 @@
+<?php $registeredRooms = array("rljcc"=>"aa"); ?>

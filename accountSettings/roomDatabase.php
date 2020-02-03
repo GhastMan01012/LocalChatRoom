@@ -1,0 +1,1 @@
+<?php $registeredRooms = array("lrjgy"=>"So many damn errors"); ?>

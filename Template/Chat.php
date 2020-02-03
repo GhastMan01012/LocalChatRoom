@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <?php
 $userName = $_SESSION['userName'];
-$currentdir = str_replace("/Users/ethan/Sites", "", getcwd());
+$currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 $pageCode = str_replace('/chat/Rooms/', "", $currentdir);
 ?>
 	<html>
@@ -24,7 +24,7 @@ $pageCode = str_replace('/chat/Rooms/', "", $currentdir);
 			if($userName != "") {
 				echo '<table id="bottomBar">
 					<tr>
-						<td style="width:24vw;">©2019 localchatroom.ml.<br> All rights reserved. (sorta)</td>
+						<td style="width:24vw;">©2020 MilkMGN.<br> All rights reserved.</td>
 						<td style="text-align:center;width:76vw;">
 							<form action="/chat/Rooms/'.$pageCode.'/Chat.php" method="post">
 								<p class="textInput">Send a message to the chat:
