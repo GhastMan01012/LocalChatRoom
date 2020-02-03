@@ -1,11 +1,11 @@
 <?php session_start(); // Start a session where $_SESSION[] variables can be called from. ?>
 <!DOCTYPE html>
-<html>
+<html style='font-family:Rubik;'>
   <head>
     <meta charset="utf-8">
     <title>Privacy</title>
     <link rel="stylesheet" type="text/css" href="style.php">
-    <link href="../Product%20Sans/stylesheet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   </head>
   <body>
     <?php include 'headerbar.php'; ?>
