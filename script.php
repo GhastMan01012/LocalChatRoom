@@ -1,13 +1,18 @@
 <?php
+// Define some variables
 $_FILES["fileToUpload"]["name"] = "";
 $_FILES["fileToUpload"]["tmp_name"] = "";
+
+include_once 'cnf.php';
+
 // Get the account name and store it in a nicer variable
 if(isset($_SESSION['userName'])) {
 	$userName = $_SESSION['userName'];
 }
+
 // Add a message to database
 if(isset($_POST['Enter'])) {
-  $link = mysqli_connect("localhost", "root", "milkmgn", "LCR");
+  $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
   $msg = str_replace("'", "\'", $_POST['Enter']);   
   $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$msg."', '". str_replace("'", "\'", $userName) ."')";
     if(!mysqli_query($link, $sql)) {
