@@ -14,7 +14,7 @@ if($userName == "") {
   $styleHC = "#116280";
   $styleC = "#0696cc";
 } else { // If the user is logged in, use styles from their preferences.
-    $link = mysqli_connect("localhost", "root", "milkmgn", "UserSettings");
+    $link = mysqli_connect("localhost", "root", "root", "UserSettings");
     $sql = "SELECT MainBubble, MainBubbleFont, SecondaryBubble, SecondaryBubbleFont, BackgroundColour, AccentColour, HeaderColour, GeneralColour FROM Colours WHERE UserName = '$userName'";
     $results = mysqli_query($link, $sql);
     // Turn the data into an array where each key is a column in the table
@@ -152,7 +152,7 @@ img {
 .left {
   float:left;
   border-radius: 12px;
-  border:2px solid <?php echo $styleMBC ?>;
+  border:2px solid;
   background-color: white;
   color: black;
   padding: 4px;
@@ -160,7 +160,7 @@ img {
 .right {
   float:right;
   border-radius:12px;
-  border: 2px solid #056e94;
+  border: 2px solid;
   background-color: white;
   color: #000000;
   padding: 4px;

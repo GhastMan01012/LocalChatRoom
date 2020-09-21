@@ -15,7 +15,7 @@ if(!isset($_SESSION['userName'])) {
     <meta charset="utf-8">
     <title>Settings</title>
     <link rel="stylesheet" type="text/css" href='style.php'>
-    <link href="../Product%20Sans/stylesheet.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
   </head>
   <body>
     <?php include 'headerbar.php'; include 'sidebar.php';?>

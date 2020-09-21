@@ -42,6 +42,7 @@ function copydir($src, $dst) {
   <head>
     <meta charset="utf-8">
     <title>Make a Room</title>
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.php">
   </head>
   <body>

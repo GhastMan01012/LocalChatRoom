@@ -10,8 +10,7 @@ if(!isset($_SESSION['userName'])) {
     <li><a href='register.php'>Register</a></li>
       <?php
       if(!isset($_SESSION['userName'])) {
-      echo "<li id='loginForm'><a>
-      <form action='encrypt.php' method='post'>
+      echo "<li id='loginForm'><a> <form action='encrypt.php' method='post'>
       <input type='text' name='loginUsername' placeholder='Username:'>
       <input type='password' name='loginPassword' placeholder='Password:'>
       <input type='submit'>
@@ -22,6 +21,6 @@ if(!isset($_SESSION['userName'])) {
       }
     ?>
     <li><a><?php echo $userName; ?><br></a></li>
-    <li style='padding:0;padding-left:10vw;float:left;'><a style='color:#0696cc;'href='/linus.php'><h1>ACSHSISC</h1></a></li>
+    <li style='padding:0;padding-left:10vw;float:left;'><a style='color:#0696cc;'href='/LCR/'><h1>Local Chatroom</h1></a></li>
   </ul>
 </nav>

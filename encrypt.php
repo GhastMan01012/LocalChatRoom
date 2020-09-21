@@ -6,6 +6,7 @@ include_once 'cnf.php';
 
 // Encrypt the set password and write it to the file. (When the client registers and account)
 if(isset($_POST['registerPassword'])) {
+  $colour = randomColour();
   $encrypted = password_hash($_POST['registerPassword'], PASSWORD_BCRYPT);
   $userName = $_POST['registerUsername'];
   // Attempt MySQL server connection.
@@ -22,11 +23,22 @@ if(isset($_POST['registerPassword'])) {
     die();
   } else {
     // Attempt insert query execution
-    $sql = "INSERT INTO UserAccounts (Perms, UserName, UserKey) VALUES (2, '$userName', '$encrypted')";
+    $sql = "INSERT INTO UserAccounts (Perms, UserName, UserKey, Colour) VALUES (2, '$userName', '$encrypted', '$colour')";
     if(!mysqli_query($link, $sql)) {
       echo "ERROR: Could not able to execute $sql. " . mysqli_error($link) . "<br> Please report this to a web admin";
     }
-    echo "Successfully registered.<meta http-equiv='refresh' content='3;/'>";
+    $sql = "SELECT UserID FROM UserAccounts WHERE UserName = '".$userName."';";
+    if(!mysqli_query($link, $sql)) {
+      echo "ERROR: Could not able to execute $sql.".mysqli_error($link);
+    }
+    $results = mysqli_query($link, $sql);
+    $data = mysqli_fetch_assoc($results);
+
+    $sql2 = "INSERT INTO LastOnline (UserID, LastOnline) VALUES ('".$data['UserID']."', now())";
+    if(!mysqli_query($link, $sql2)) {
+      echo "ERROR: Could not able to execute $sql2. " . mysqli_error($link);
+    }
+    echo "Successfully registered.<meta http-equiv='refresh' content='3;/LCR'>";
     $redirectPage = "the main Chatroom.";
     // Create default colours for everyone
     defaultify($userName);
@@ -51,18 +63,15 @@ if(isset($_POST['loginUsername'])) {
     if(!mysqli_query($link, $sql)) {
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
     } else {
-        echo "Successfully logged in.<meta http-equiv='refresh' content='3;/'>";
+        echo "Successfully logged in.<meta http-equiv='refresh' content='3;/LCR/'>";
         $redirectPage = "the main Chatroom.";
     }
     $results = mysqli_query($link, $sql);
     // Turn the data into an array where each key is a column in the table
     $data = mysqli_fetch_assoc($results);
     // Write the database info to a session variable so it can be called later
-    if($data['Perms'] == 5) {
-      $_SESSION['userName'] = rainbow($data['UserName']);
-    } else {
-      $_SESSION['userName'] = $data['UserName'];
-    }
+    $_SESSION['userName'] = $data['UserName'];
+
     $_SESSION['permissions'] = $data['Perms'];
   } else {
     echo "FALSE";
@@ -73,7 +82,7 @@ if(isset($_POST['logout'])) {
     unset($_SESSION['userName']);
     unset($_SESSION['Perms']);
     $redirectPage = "the main Chatroom";
-    echo "<meta http-equiv='refresh' content='3;/'>";
+    echo "<meta http-equiv='refresh' content='3;/LCR/'>";
 }
 
 ?>
