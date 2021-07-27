@@ -1,6 +1,6 @@
 
 					<?php
-					$category = $_GET['category'];
+					$category_no_safe = $_GET['category'];
 
 					$servername = "localhost";
 					$username = "root";
@@ -8,6 +8,7 @@
 
 					// Create connection
 					$conn = new mysqli($servername, $username, $password);
+					$category = mysql_real_escape_string($conn,  $category_no_safe);
 
 					// Check connection
 					if ($conn->connect_error) {

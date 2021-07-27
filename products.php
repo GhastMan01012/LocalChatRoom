@@ -52,8 +52,8 @@
 					}
 
 					if($noOfQueries != 0) {
-						$category = $_GET['category'];
-
+						$category_no_safe = $_GET['category'];
+						$category = mysql_real_escape_string($conn,  $category_no_safe);
 						$sql1 = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'products' AND TABLE_NAME = '".$category."';";
 						$result1 = $conn->query($sql1);
 
