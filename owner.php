@@ -9,18 +9,20 @@ $currentdir = str_replace("C:/xampp/htdocs", "", getcwd());
 // Change the permission level of a user
 if(isset($_POST['user'])) {
   if(isset($_POST['permLevel'])) {
-    $userToChange = $_POST['user'];
+    $userToChange_no_safe = $_POST['user'];
     $permToChange = $_POST['permLevel'];
     $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
+    $userToChange = mysql_real_escape_string($link,  $userToChange_no_safe);
     $sql = "UPDATE UserAccounts SET Perms = $permToChange WHERE UserName = '$userToChange'";
     $results = mysqli_query($link, $sql);
   }
 
   // Spencer's attempt at name changes
   if(isset($_POST['userNameChange'])) {
-  $userToChange = $_POST['user'];
+  $userToChange_no_safe = $_POST['user'];
   $newName = $_POST['userNameChange'];
   $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
+  $userToChange = mysql_real_escape_string($link,  $userToChange_no_safe);
   $sql = "SELECT UserID From LCR.userAccounts WHERE UserName = '$userToChange'";
   $results = mysqli_query($link, $sql);
   $data = mysqli_fetch_assoc($results);
@@ -33,7 +35,9 @@ if(isset($_POST['user'])) {
 // If the owner wants to see a user's perms, grab it from a text file.
 if(isset($_POST['userQuery'])) {
   $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
-  $sql = "SELECT Perms FROM LCR.UserAccounts WHERE UserName = '".$_POST['userQuery']."';";
+  $userQuery_no_safe = $_POST['userQuery'];
+  $userQuery = mysql_real_escape_string($link,  $userQuery_no_safe);
+  $sql = "SELECT Perms FROM LCR.UserAccounts WHERE UserName = '$userQuery';";
   $results = mysqli_query($link, $sql);
   $data = mysqli_fetch_assoc($results);
   $userQuery = $data['Perms'];

@@ -3,13 +3,14 @@
 include_once 'functions/customUsernames.php';
 include_once 'functions/registration.php';
 include_once 'cnf.php';
-
+$check_con = mysqli_connect($dbHostname, $dbUser, $dbPassword "LCR");
 // Encrypt the set password and write it to the file. (When the client registers and account)
 if(isset($_POST['registerPassword'])) {
   $colour = randomColour();
   $encrypted = password_hash($_POST['registerPassword'], PASSWORD_BCRYPT);
-  $userName = $_POST['registerUsername'];
-  // Attempt MySQL server connection.
+  $userName_no_safe = $_POST['registerUsername'];
+  $userName = mysql_real_escape_string($check_con,  $userName_no_safe);
+    // Attempt MySQL server connection.
   $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
   // Check connection
   if($link === false){
@@ -49,8 +50,8 @@ if(isset($_POST['registerPassword'])) {
 // When a client logs in, put their username into a session variable and other useful spots.
 if(isset($_POST['loginUsername'])) {
   // Store their username in a variable
-  $userName = $_POST['loginUsername'];
-
+  $userName_no_safe = $_POST['loginUsername'];
+  $userName = mysql_real_escape_string($check_con,  $userName_no_safe);
   // Setup a database connection
   $link = mysqli_connect($dbHostname, $dbUser, $dbPassword, "LCR");
 

@@ -26,10 +26,10 @@
 <?php
 // Registered Account Processing
 if(isset($_POST['email'])) {
-    $userEmail = $_POST['email'];
+    $userEmail_no_safe = $_POST['email'];
     $userPassword = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+    $firstName_no_safe = $_POST['firstName'];
+    $lastName_no_safe = $_POST['lastName'];
 
     $servername = "localhost";
 	$username = "root";
@@ -44,9 +44,12 @@ if(isset($_POST['email'])) {
     }
 
     // Check if user account already exists
+    $userEmail = mysql_real_escape_string($conn,  $userEmail_no_safe);
     $sql = 'SELECT `Email` FROM users.users WHERE Email = "'.$userEmail.'";';
     $result = $conn->query($sql);
     if($result->num_rows == 0) {
+        $lastName = mysql_real_escape_string($conn,  $lastName_no_safe);
+        $firstName = mysql_real_escape_string($conn,  $firstName_no_safe);
         $sql2 = "INSERT INTO users.users (`Email`, `Password`, `FirstName`, `LastName`) VALUES ('".$userEmail."', '".$userPassword."', '".$firstName."', '".$lastName."');";
         $result2 = $conn->query($sql2);
 

@@ -7,13 +7,15 @@ if(isset($_SESSION['userName'])) {
 
 include_once 'cnf.php';
 
+$username_no_safe = $_GET['username'];
+$username_safe = mysql_real_escape_string($conn,  $username_no_safe);
 function sendMemessage($fileName) {
 	$link = mysqli_connect("localhost", "root", "root", "LCR");
 	if($fileName == '') {
 
 	} else {
 		$msg = "<img max-width=\"480px\" src=\"".$fileName."\">";
-	  $sql = "INSERT INTO Meme (msgContent, msgOwner) VALUES ('".$msg."', '". str_replace("'", "\'", $_GET['username']) ."')";
+	  $sql = "INSERT INTO Meme (msgContent, msgOwner) VALUES ('".$msg."', '$username_safe')";
 	    if(!mysqli_query($link, $sql)) {
 	        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 	    }
@@ -21,7 +23,6 @@ function sendMemessage($fileName) {
 	  mysqli_close($link);
 	}
 }
-
 // Add a message to database
 if(isset($_GET['chat'])) {
   if($_GET['chat'] == 'chat') {
@@ -31,7 +32,7 @@ if(isset($_GET['chat'])) {
 		} else {
 			$msg = str_replace("'", "\'", $_GET['message']);
 			$msg = wordwrap($msg, 75, "<br>");
-		  $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$msg."', '". str_replace("'", "\'", $_GET['username']) ."')";
+		  $sql = "INSERT INTO Chat (msgContent, msgOwner) VALUES ('".$msg."', '$username_safe')";
 			echo $sql;
 		    if(!mysqli_query($link, $sql)) {
 		        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
@@ -46,7 +47,7 @@ if(isset($_GET['chat'])) {
 		} else {
 			$msg = str_replace("'", "\'", $_GET['message']);
 			$msg = wordwrap($msg, 75, "<br>");
-		  $sql = "INSERT INTO Meme (msgContent, msgOwner) VALUES ('".$msg."', '". str_replace("'", "\'", $_GET['username']) ."')";
+		  $sql = "INSERT INTO Meme (msgContent, msgOwner) VALUES ('".$msg."', '$username_safe')";
 		    if(!mysqli_query($link, $sql)) {
 		        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
 		    }
